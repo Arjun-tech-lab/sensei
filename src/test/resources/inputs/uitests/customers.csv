@@ -1,0 +1,3 @@
+dataSet,customerId,branchCode,dateOfBirth,firstName,lastName,salutation,gender,customerType,customerStatus,pan,phone,email,uid,address1,address2,pinCode,addressType1
+Standard,0001,HO-HO,1974-01-01,FirstName1,LastName1,Mr,Male,Individual,Active,AAAAA1111A,9999999999,abc@abc.com,111122223333,Address1,Address2,560104,Permanent
+Standard,0002,JNR-Jayanagar,1975-01-01,FirstName2,LastName2,Ms,Female,Individual,Active,BBBBB1111B,8888888888,xyz@xyz.com,444455556666,Address21,Address22,560104,Permanent
