@@ -247,15 +247,4 @@ public class ProductUITests extends AbstractUITests {
         }
         page.pause();
     }
-
-
-    @SpringBootTest
-    static
-    class UiApplicationTests {
-
-        @org.junit.jupiter.api.Test
-        void contextLoads() {
-        }
-
-    }
 }
