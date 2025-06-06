@@ -26,7 +26,7 @@ public class UITestSuite {
     void launchBrowserCreateContextAndPage() {
         playwright = Playwright.create();
         //browser = playwright.chromium().launch();
-        browser = playwright.firefox().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(100));
+        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(100));
         if (Paths.get(TESTAUTH + authFileName).toFile().exists())
             context = browser.newContext(
                     new Browser.NewContextOptions().setStorageStatePath(Paths.get(TESTAUTH + authFileName)));
