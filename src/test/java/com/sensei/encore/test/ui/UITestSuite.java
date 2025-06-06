@@ -10,8 +10,8 @@ import java.nio.file.Paths;
 public class UITestSuite {
 
     public static final String TESTAUTH = ".testauth/";
-    public static final String USER_ID = "admin";
-    public static final String PASSWORD = "admin";
+    public static final String USER_ID = "shridhar";
+    public static final String PASSWORD = "Admin@123";
     public static final String BASE_URL = "http://localhost:4200";
     // Shared between all tests in this class.
     protected Playwright playwright;
