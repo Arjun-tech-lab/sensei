@@ -12,7 +12,7 @@ public class UITestSuite {
     public static final String TESTAUTH = ".testauth/";
     public static final String USER_ID = "admin";
     public static final String PASSWORD = "admin";
-    public static final String BASE_URL = "https://encore-demo.senseitech.com/test-client";
+    public static final String BASE_URL = "https://encore-demo.senseitech.com/trishatest-client";
     // Shared between all tests in this class.
     protected Playwright playwright;
     protected Browser browser;

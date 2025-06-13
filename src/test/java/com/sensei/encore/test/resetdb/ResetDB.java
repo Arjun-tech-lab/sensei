@@ -16,7 +16,7 @@ public class ResetDB {
     @Test
     public void resetDd() {
         try {
-            String dbName = "encoretestdb";
+            String dbName = "trishatestdb";
             HttpClient client = HttpClient.newHttpClient();
 
             HttpRequest request = HttpRequest.newBuilder()
