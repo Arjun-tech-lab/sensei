@@ -31,8 +31,10 @@ public class CustomerUITests extends AbstractUITests {
                 customers.add(customer);
             }
         }
+        page.navigate(BASE_URL + "#/customer/profile");
         for(CustomerFormInputDto customer : customers) {
-            page.navigate(BASE_URL + "#/customer/profile?type=create");
+            page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("New Profile"))
+                    .click();
             page.getByLabel("Customer Id", new Page.GetByLabelOptions().setExact(true)).fill(customer.getCustomerId());
             page.getByLabel("Branch Code").selectOption(customer.getBranchCode());
             page.getByLabel("Date of Birth").fill(customer.getDateOfBirth());
@@ -61,7 +63,7 @@ public class CustomerUITests extends AbstractUITests {
             contactTabPanel.getByLabel("Phone1").nth(0).fill(customer.getPhone());
             contactTabPanel.getByLabel("Email").nth(0).fill(customer.getEmail());
             page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Save")).click();
-            page.waitForURL(BASE_URL + "#/customer/profile");
+
         }
     }
 
