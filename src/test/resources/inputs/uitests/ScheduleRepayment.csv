@@ -1,5 +1,5 @@
-Remarks,Instrument,PaidAmount,balanceAmount
-paid,Cash,4167.00,45833.0
+Remarks,Instrument,PaidAmount,balanceAmount,Repaymentdate
+paid,Cash,4167.00,45833.0,2020-01-01
 
 
 

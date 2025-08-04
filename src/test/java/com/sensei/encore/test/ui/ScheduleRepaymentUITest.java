@@ -1,4 +1,5 @@
 package com.sensei.encore.test.ui;
+import com.microsoft.playwright.Locator;
 import com.sensei.encore.test.utils.FileLocatorUtils;
 
 
@@ -35,27 +36,37 @@ public class ScheduleRepaymentUITest extends AbstractUITests {
 
 
         for (ScheduleRepaymentFormInputDto repay : Repayment) {
+
+
             page.navigate(BASE_URL + "#/loans-account/loan-accounts");
-            page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Actions expand_more")).first().click();
-            page.getByRole(AriaRole.MENUITEM, new Page.GetByRoleOptions().setName("Repay")).hover();
-            page.getByRole(AriaRole.MENUITEM, new Page.GetByRoleOptions().setName("Scheduled Repayment")).click();
+            page.locator("tr", new Page.LocatorOptions().setHasText("1001Pro00005"))
+                    .getByRole(AriaRole.BUTTON, new Locator.GetByRoleOptions().setName("View"))
+                    .click();
 
 
-            page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName("Remarks")).fill(repay.getRemarks());
+            page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Schedule")).click();
+            String statusText = page.locator("span.text-red-600").textContent().trim();
+            if (statusText.equals("Due")) {
 
-            page.getByRole(AriaRole.COMBOBOX, new Page.GetByRoleOptions().setName("Instrument")).selectOption(repay.getInstrument());
+                page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Actions")).click();
+                page.getByRole(AriaRole.MENUITEM, new Page.GetByRoleOptions().setName("Repay")).hover();
+                page.getByRole(AriaRole.MENUITEM, new Page.GetByRoleOptions().setName("Scheduled Repayment")).click();
+                page.getByLabel("Repayment Date").fill(repay.getRePaymentdate());
+                page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName("Remarks")).fill(repay.getRemarks());
 
-            page.getByLabel("Paid Amount").fill(repay.getPaidAmount());
+                page.getByRole(AriaRole.COMBOBOX, new Page.GetByRoleOptions().setName("Instrument")).selectOption(repay.getInstrument());
 
+                page.getByLabel("Paid Amount").fill(repay.getPaidAmount());
+                page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Proceed")).click();
 
-            page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Proceed")).click();
+                page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Confirm")).click();
 
-            page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Confirm")).click();
-
-            page.locator("#view_btn").click();
+                page.locator("#view_btn").click();
+            }
 
 
         }
+        page.navigate(BASE_URL+"#/loans-account/loan-accounts?view=1001Pro00005");
         ScheduleRepaymentFormInputDto repay = Repayment.get(0);
         page.reload();
         String priceText = page.locator(".text-green-700").nth(1).textContent();
